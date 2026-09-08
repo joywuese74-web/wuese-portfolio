@@ -23,6 +23,7 @@ type Config struct {
 	SMTPPassword string
 	SMTPFrom     string
 	ContactTo    string
+	BrevoAPIKey  string
 
 	// Simple per-IP rate limit for the contact endpoint.
 	RateLimitPerMinute int
@@ -38,6 +39,7 @@ func Load() Config {
 		SMTPPassword:       getEnv("SMTP_PASSWORD", ""),
 		SMTPFrom:           getEnv("SMTP_FROM", ""),
 		ContactTo:          getEnv("CONTACT_TO_EMAIL", ""),
+		BrevoAPIKey:        getEnv("BREVO_API_KEY", ""),
 		RateLimitPerMinute: getEnvInt("RATE_LIMIT_PER_MINUTE", 5),
 	}
 }
