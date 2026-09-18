@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { contactInfo } from '../data/skills'
 
 // A quiet orbital-particle animation: a nod to the physics background
@@ -86,8 +87,9 @@ function OrbitCanvas() {
 
   return <canvas ref={canvasRef} aria-hidden="true" />
 }
-
 export default function Hero() {
+  const navigate = useNavigate()
+
   return (
     <section id="home" className="hero">
       <div className="container hero-grid">
@@ -101,10 +103,10 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn btn-primary" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                        <button className="btn btn-primary" onClick={() => navigate('/projects')}>
               View My Work
             </button>
-            <button className="btn btn-outline" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            <button className="btn btn-outline" onClick={() => navigate('/contact')}>
               Let's Work Together
             </button>
           </div>

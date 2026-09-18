@@ -241,7 +241,7 @@ img { max-width: 100%; display: block; }
   padding: 0;
 }
 
-.nav-links button {
+.nav-links a {
   background: none;
   border: none;
   color: var(--text-muted);
@@ -249,10 +249,11 @@ img { max-width: 100%; display: block; }
   padding: 0.25rem 0;
   border-bottom: 1px solid transparent;
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  display: inline-block;
 }
 
-.nav-links button:hover,
-.nav-links button.active {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--text);
   border-color: var(--accent);
 }

@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useActiveSection } from '../hooks/useActiveSection'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 
 const LINKS = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'services', label: 'Services' },
-  { id: 'resume', label: 'Resume' },
-  { id: 'contact', label: 'Contact' },
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/skills', label: 'Skills' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/services', label: 'Services' },
+  { path: '/resume', label: 'Resume' },
+  { path: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const active = useActiveSection(LINKS.map((l) => l.id))
+  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -23,30 +23,31 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const goTo = (id) => {
+  const goTo = (path) => {
     setMenuOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    navigate(path)
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   return (
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
-          <a href="#home" className="logo" onClick={(e) => { e.preventDefault(); goTo('home') }}>
+          <Link to="/" className="logo" onClick={() => setMenuOpen(false)}>
             Wuese<span>.</span>Joy
-          </a>
+          </Link>
 
           <nav aria-label="Primary">
             <ul className="nav-links">
               {LINKS.map((link) => (
-                <li key={link.id}>
-                  <button
-                    className={active === link.id ? 'active' : ''}
-                    onClick={() => goTo(link.id)}
-                    aria-current={active === link.id ? 'page' : undefined}
+                <li key={link.path}>
+                  <NavLink
+                    to={link.path}
+                    end={link.path === '/'}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
                   >
                     {link.label}
-                  </button>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -84,7 +85,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
         {LINKS.map((link) => (
-          <button key={link.id} onClick={() => goTo(link.id)}>
+          <button key={link.path} onClick={() => goTo(link.path)}>
             {link.label}
           </button>
         ))}
