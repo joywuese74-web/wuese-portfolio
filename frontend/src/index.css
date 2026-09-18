@@ -421,10 +421,12 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 }
 
-.hero-visual canvas {
+.hero-visual canvas,
+.hero-visual img {
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* -------------------- ABOUT -------------------- */

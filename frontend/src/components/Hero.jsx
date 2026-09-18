@@ -131,8 +131,8 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-visual">
-          <OrbitCanvas />
+                <div className="hero-visual">
+          <img src="/profile.png" alt="Wuese Joy Ayande" />
         </div>
       </div>
     </section>
