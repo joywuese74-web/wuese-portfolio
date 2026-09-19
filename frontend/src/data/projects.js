@@ -14,7 +14,7 @@ export const projects = [
     technologies: ['PLACEHOLDER_TECH_1', 'PLACEHOLDER_TECH_2', 'PLACEHOLDER_TECH_3'],
     githubUrl: 'https://github.com/joywuese74-web/PLACEHOLDER_REPO',
     liveUrl: '', // add live URL when deployed, otherwise leave blank to hide the button
-    image: Laura.png, // e.g. '/projects/laura-cover.png'
+    image: '/porjects/Laura.png', // e.g. '/projects/laura-cover.png'
     status: 'In development',
     caseStudy: {
       overview:
